@@ -1,11 +1,10 @@
 import './App.less';
+import MainPage from './components/MainPage/MainPage';
 
-const App:React.FC = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <h1 className="header">
-        Naman Ajmera
-      </h1>
+      <MainPage />
     </div>
   );
 }
