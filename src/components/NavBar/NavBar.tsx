@@ -1,12 +1,18 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import style from "./NavBar.module.less";
 import vite from "../../assets/images/vite.svg";
 import hamburger from "../../assets/images/hamburger.svg";
+import { LiaTimesSolid } from "react-icons/lia";
 
 type Props = {}
 
 const NavBar: React.FC = (props: Props) => {
-    const navRef = useRef<HTMLUListElement>(null);
+
+    const [isToggle, setIsToggle] = useState(false);
+
+    const handleToggle = () => {
+        setIsToggle(!isToggle);
+    }
     return (
         <nav className={style['nav-bar']}>
             <div className={style['title-logo-container']}>
@@ -20,7 +26,7 @@ const NavBar: React.FC = (props: Props) => {
                 </div>
             </div>
             <div className={style['actions-container']}>
-                <ul className={style["actions-list"]} ref={navRef}>
+                <ul className={`${style["actions-list"]} ${isToggle && style["nav-bar-open"]}`}>
                     <li className={style["action"]}>
                         <a href='/nav-bar'>
                             Home
@@ -42,7 +48,11 @@ const NavBar: React.FC = (props: Props) => {
                         </a>
                     </li>
                 </ul>
-                <img className={style['nav-toggle']} src={hamburger} alt="" />
+                {
+                    isToggle ?
+                        <LiaTimesSolid className={style['nav-toggle']} onClick={handleToggle} /> :
+                        <img className={style['nav-toggle']} src={hamburger} alt="" onClick={handleToggle} />
+                }
             </div>
         </nav>
     )
