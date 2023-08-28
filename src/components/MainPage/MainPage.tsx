@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from "./MainPage.module.less";
 import { aboutPage, reactTitle } from '../../utilities/data';
-import projectImage from "../../assets/project.svg";
+import projectImage from "../../assets/images/project.svg";
+import { useNavigate } from "react-router-dom";
 
 type Props = {}
 
 const MainPage: React.FC = (props: Props) => {
+    const navigate = useNavigate();
     return (
         <div className={styles['main-page-container']}>
             <div className={styles["headline"]}>
@@ -24,6 +26,7 @@ const MainPage: React.FC = (props: Props) => {
             </div>
             <div className={styles["common-components"]}>
                 <h1 className={styles['heading']}>Common Components Pages</h1>
+                <button onClick={() => navigate('/nav-bar')}>NavBar</button>
             </div>
         </div>
     )
