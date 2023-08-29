@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./Dropdown.module.less";
 import chevron from "../../../../assets/images/chevron.svg";
 
@@ -21,6 +21,7 @@ const Dropdown = ({
   setSelectedValue,
   isSearch,
 }: Props) => {
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [dropDownList, setDropDownList] = useState<
@@ -32,6 +33,21 @@ const Dropdown = ({
   const handleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   const handleSelectedValue = (value: { id: number; name: string }) => {
     setSelectedValue(value);
@@ -51,7 +67,7 @@ const Dropdown = ({
     }
   };
   return (
-    <div className={style["dropdown-container"]}>
+    <div className={style["dropdown-container"]} ref={dropdownRef}>
       <button className={style["dropdown-button"]} onClick={handleDropdown}>
         <span className={style["button-txt"]}>{selectedValue.name} </span>
         <img
@@ -66,7 +82,7 @@ const Dropdown = ({
         }`}
       >
         {showDropdown && (
-          <>
+          <div>
             {isSearch && (
               <input
                 type="text"
@@ -88,7 +104,7 @@ const Dropdown = ({
                   </li>
                 ))}
             </ul>
-          </>
+          </div>
         )}
       </div>
     </div>
