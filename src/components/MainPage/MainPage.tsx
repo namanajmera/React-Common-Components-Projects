@@ -28,7 +28,9 @@ const MainPage: React.FC = (props: Props) => {
                 <h1 className={styles['heading']}>Common Components Pages</h1>
                 <button onClick={() => navigate('/nav-bar')}>NavBar</button>
                 <br />
-                <button onClick={() => navigate('/modal')}>Modal</button>
+                <button onClick={() => navigate('/modal')}>Modal Page</button>
+                <br />
+                <button onClick={() => navigate('/dropdown')}>Dropdown Page</button>
             </div>
         </div>
     )
