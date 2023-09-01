@@ -45,33 +45,51 @@ const DropdownPage = (props: Props) => {
       isChecked: false,
     },
   ]);
+  const [multiSelectedValue2, setMultiSelectedValue2] = useState([
+    {
+      id: 0,
+      name: "Select",
+      isChecked: false,
+    },
+  ]);
   return (
     <div className={style["dropdown-page-containers"]}>
       <h1>DropdownPage</h1>
-      <div>
-        <h3>Dropdown</h3>
-        <Dropdown
-          selectedValue={selectedValue1}
-          dropdownList={dropdownList}
-          setSelectedValue={setSelectedValue1}
-        />
-      </div>
-      <div>
-        <h3>Dropdown With Search</h3>
-        <Dropdown
-          selectedValue={selectedValue2}
-          dropdownList={dropdownList}
-          setSelectedValue={setSelectedValue2}
-          isSearch={true}
-        />
-      </div>
-      <div>
-        <h3>Multi Select Dropdown</h3>
-        <MultiSelectDropdown
-          selectedValue={multiSelectedValue1}
-          dropdownList={multiSelectDropdownList}
-          setSelectedValue={setMultiSelectedValue1}
-        />
+      <div className={style["dropdown-container"]}>
+        <div className={style["dropdown-box"]}>
+          <h3>Dropdown</h3>
+          <Dropdown
+            selectedValue={selectedValue1}
+            dropdownList={dropdownList}
+            setSelectedValue={setSelectedValue1}
+          />
+        </div>
+        <div className={style["dropdown-box"]}>
+          <h3>Dropdown With Search</h3>
+          <Dropdown
+            selectedValue={selectedValue2}
+            dropdownList={dropdownList}
+            setSelectedValue={setSelectedValue2}
+            isSearch={true}
+          />
+        </div>
+        <div className={style["dropdown-box"]}>
+          <h3>Multi Select Dropdown</h3>
+          <MultiSelectDropdown
+            selectedValue={multiSelectedValue1}
+            dropdownList={multiSelectDropdownList}
+            setSelectedValue={setMultiSelectedValue1}
+          />
+        </div>
+        <div className={style["dropdown-box"]}>
+          <h3>Multi Select Dropdown</h3>
+          <MultiSelectDropdown
+            selectedValue={multiSelectedValue2}
+            dropdownList={multiSelectDropdownList}
+            setSelectedValue={setMultiSelectedValue2}
+            isSearch={true}
+          />
+        </div>
       </div>
     </div>
   );
