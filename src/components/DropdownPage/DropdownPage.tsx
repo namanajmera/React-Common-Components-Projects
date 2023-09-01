@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./DropdownPage.module.less";
 import Dropdown from "../commonComponents/Dropdowns/Dropdown/Dropdown";
+import MultiSelectDropdown from "../commonComponents/Dropdowns/MultiSelectDropdown/MultiSelectDropdown";
 
 type Props = {};
 
@@ -17,6 +18,18 @@ const DropdownPage = (props: Props) => {
     { id: 9, name: "Isabella Turner" },
     { id: 10, name: "Jack Harris" },
   ]);
+  const [multiSelectDropdownList, setMultiSelectDropdownList] = useState([
+    { id: 1, name: "Alice", isChecked: false },
+    { id: 2, name: "Bob", isChecked: false },
+    { id: 3, name: "Charlie Brown", isChecked: false },
+    { id: 4, name: "David Lee", isChecked: false },
+    { id: 5, name: "Ella Davis", isChecked: false },
+    { id: 6, name: "Frank White", isChecked: false },
+    { id: 7, name: "Grace Clark", isChecked: false },
+    { id: 8, name: "Henry Adams", isChecked: false },
+    { id: 9, name: "Isabella Turner", isChecked: false },
+    { id: 10, name: "Jack Harris", isChecked: false },
+  ]);
   const [selectedValue1, setSelectedValue1] = useState({
     id: 0,
     name: "Select",
@@ -25,6 +38,13 @@ const DropdownPage = (props: Props) => {
     id: 0,
     name: "Select",
   });
+  const [multiSelectedValue1, setMultiSelectedValue1] = useState([
+    {
+      id: 0,
+      name: "Select",
+      isChecked: false,
+    },
+  ]);
   return (
     <div className={style["dropdown-page-containers"]}>
       <h1>DropdownPage</h1>
@@ -43,6 +63,14 @@ const DropdownPage = (props: Props) => {
           dropdownList={dropdownList}
           setSelectedValue={setSelectedValue2}
           isSearch={true}
+        />
+      </div>
+      <div>
+        <h3>Multi Select Dropdown</h3>
+        <MultiSelectDropdown
+          selectedValue={multiSelectedValue1}
+          dropdownList={multiSelectDropdownList}
+          setSelectedValue={setMultiSelectedValue1}
         />
       </div>
     </div>
